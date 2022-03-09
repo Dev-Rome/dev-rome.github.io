@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script
+      src="https://kit.fontawesome.com/c92cf196de.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/app.js" defer></script>
+    <title>Trivia Game</title>
+  </head>
+  <body>
+    <main>
+      <article class="container">
+        <header>
+          <h1 class="logo">Trivia Game</h1>
+          <p class="player__score"><span class="score">000</span></p>
+          <div class="heart__wrapper">
+            <div class="show">
+              <i class="fas fa-heart heart"></i>
+              <i class="fas fa-heart heart"></i>
+              <i class="fas fa-heart heart"></i>
+            </div>
+            <div class="hide">
+              <i class="fas fa-heart-broken heart__broken"></i>
+              <i class="fas fa-heart-broken heart__broken"></i>
+              <i class="fas fa-heart-broken heart__broken"></i>
+            </div>
+          </div>
+        </header>
+
+        <section class="question__container">
+            <div class="question__wrapper">
+                <p class="question"></p>
+                <div class="name__wrapper">
+                    <form>
+                        <input type="text" name="name" id="name" placeholder="Enter your name" />
+                        <button type="submit" class="btn submit__name">Start</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+      </article>
+    </main>
+  </body>
+</html>
