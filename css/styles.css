@@ -1,0 +1,91 @@
+:root {
+    --main-bg-color: #212529;
+    --main-text-color: #dee2e6;
+    --main-border-color: #e9ecef;
+    --main-heart-color: #e03131;
+    --main-font-family: 'Press Start 2P', cursive;
+}
+
+*, ::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    font-family: var(--main-font-family);
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2em;
+}
+
+.logo {
+    font-size: 1rem
+}
+
+.player__score {
+    font-size: 1rem;
+}
+
+.heart, .heart__broken {
+    color: var(--main-heart-color);
+    font-size: 1rem;
+}
+
+.question__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 1em;
+}
+
+.question__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: solid 1px var(--main-border-color);
+    padding: 1em;
+    width: 55%;
+}
+
+.question {
+    margin-bottom: .5em;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 0.5em;
+    border: none;
+    border-bottom: 1px solid var(--main-border-color);
+    background-color: transparent;
+    color: var(--main-text-color);
+    font-size: 1rem;
+    font-family: var(--main-font-family);
+    margin-bottom: .5em;
+}
+
+input[type="text"]:focus {
+    outline: none;
+}
+
+.btn {
+    padding: 0.5em;
+    border: solid 1px var(--main-border-color);
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    font-family: var(--main-font-family);
+    cursor: pointer;
+}
+
+
+.hide {
+    display: none;
+}
