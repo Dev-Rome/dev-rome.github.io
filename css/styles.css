@@ -1,5 +1,5 @@
 :root {
-    --main-bg-color: #212529;
+    --main-bg-color: #1971c2;
     --main-text-color: #dee2e6;
     --main-border-color: #e9ecef;
     --main-heart-color: #e03131;
@@ -74,6 +74,10 @@ input[type="text"] {
 
 input[type="text"]:focus {
     outline: none;
+}
+
+::placeholder {
+    color: var(--main-text-color);
 }
 
 .btn {
