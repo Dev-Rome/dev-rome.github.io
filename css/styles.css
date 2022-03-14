@@ -1,7 +1,10 @@
 :root {
-    --main-color: #212529;
-    --secondary-color: #1971c2;
-    --third-color: #fff;
+    --main-color: #f8f9fa;
+    --secondary-color: #212529;
+    --third-color: #4dabf7;
+    --fourth-color: #fff;
+    --correct-color: ##40c057;
+    --wrong-color: #dc3545;
     --main-heart-color: #e03131;
     --main-font-family: 'Open Sans', sans-serif;
 }
@@ -15,13 +18,16 @@
 body {
     background-color: var(--main-color);
     font-family: var(--main-font-family);
+    width: 1140px;
+    width: 80%;
+    margin: 0 auto;
 }
 
 header {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    padding: 2em;
+    padding: 2rem;
 }
 
 .logo, .player__score, .heart, .heart__broken {
@@ -29,139 +35,61 @@ header {
 }
 
 .logo, .player__score {
-    color: var(--third-color);
+    color: var(--secondary-color);
 }
 
 .heart, .heart__broken {
     color: var(--main-heart-color);
 }
 
-.question__container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 1em;
+.number__of__question {
+    font-size: 1rem;
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
 }
 
 .question__wrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: var(--secondary-color);
-    padding: 1em;
-    margin-bottom: 2em;
-    width: 55%;
+    justify-content: space-between;
+    align-items: center; 
+    margin-bottom: 2rem;
 }
 
 .question {
-    color: var(--third-color);
+    color: var(--secondary-color);
     font-size: 1.4rem;
-    margin-bottom: .5em;
 }
 
-input[type="text"] {
+.choice {
+    display: flex;
     width: 100%;
-    padding: 0.5em;
-    border: none;
-    border-bottom: 1px solid var(--third-color);
-    background-color: transparent;
-    color: var(--third-color);
-    font-size: 1rem;
-    font-family: var(--main-font-family);
-    margin-bottom: .5em;
+    margin-bottom: .5rem;
+    font-size: 1.1rem;
+    background-color: var(--fourth-color);
 }
 
-input[type="text"]:focus {
-    outline: none;
+.answer__letter {
+    padding: 1rem;
+    color: var(--fourth-color);
+    background-color: var(--third-color); 
 }
 
-::placeholder {
-    color: var(--third-color);
-    font-size: 1.2rem;
+.answer__text {
+    padding: 1rem;
+    background-color: var(--fourth-color);
 }
 
-.btn {
-    padding: .5em;
-    border: solid 1px var(--third-color);
-    background: none;
-    color: var(--third-color);
-    font-family: var(--main-font-family);
-    cursor: pointer;
+.correct {
+    background-color: var(--correct-color);
 }
 
+.wrong {
+    background-color: var(--wrong-color);
+}
 
 .hide {
     display: none;
 }
 
-.categories__wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    row-gap: 3em;
-    column-gap: 7em;
-}
 
-.category {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-color: var(--secondary-color);
-    width: 200px;
-    height: 200px;
-}
 
-.category__name {
-    font-size: 1rem;
-    margin-bottom: 1em;
-    padding: 0 1em;
-    text-align: center;
-    color: var(--third-color);
-}
-
-.category__btn {
-    display: flex;
-    margin: 0 auto;
-    padding: 0.5em;
-    border: solid 1px var(--third-color);
-    font-family: var(--main-font-family);
-    text-align: center;
-    cursor: pointer;
-}
-
-.timer__wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 2em;
-}
-
-.timer {
-    font-size: 1.5rem;
-    color: var(--third-color);
-}
-
-.choices {
-    display: flex;
-    align-items: center;
-    background-color: var(--third-color);
-    color: var(--main-color);
-    margin: 0 auto;
-    margin-bottom: .5em;
-    width: 75%;
-    font-size: 1rem;
-}
-
-.choice__letter {
-    padding: 1em 1.5em;
-    background-color: var(--secondary-color);
-    color: var(--third-color);
-}
-
-.choice__text {
-    margin-left: 1em;
-    border: 1px solid var(--third-color);
-}
