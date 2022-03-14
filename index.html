@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/styles.css" />
     <script
       src="https://kit.fontawesome.com/c92cf196de.js"
@@ -35,89 +38,37 @@
           </div>
         </header>
 
-        <section class="question__container">
-            <div class="question__wrapper">
-                <p class="question"></p>
-                <div class="name__wrapper">
-                    <form>
-                        <input type="text" name="name" id="name" placeholder="Enter your name" />
-                        <button type="submit" class="btn submit__name">Start</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-        <section class="category__container hide">
-            <div class="categories__wrapper">
-                <div class="category">
-                    <p class="category__name">General Knowledge</p>
-                    <button class="btn category__btn">
-                      Take Quiz
-                    </button>
-                </div>
-                <div class="category">
-                    <p class="category__name">Entertainment: Books</p>
-                    <button class="btn category__btn">
-                      Take Quiz
-                    </button>
-                </div>
-                <div class="category">
-                    <p class="category__name">Entertainment: Film</p>
-                    <button class="btn category__btn">
-                      Take Quiz
-                    </button>
-                </div>
-                <div class="category">
-                    <p class="category__name">Entertainment: Music</p>
-                    <button class="btn category__btn">
-                      Take Quiz
-                    </button>
-                </div>
-                <div class="category">
-                    <p class="category__name">Entertainment: Musicals & Theatres</p>
-                    <button class="btn category__btn">
-                      Take Quiz
-                    </button>
-                </div>
-                <div class="category">
-                    <p class="category__name">Entertainment: Television</p>
-                    <button class="btn category__btn">
-                      Take Quiz
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <section class="timer__container hide">
-            <div class="timer__wrapper">
-                <p class="timer">
-                    <span class="minutes">00</span>:<span class="seconds">00</span>
-                </p>
-            </div>
-        </section>
-
-        <section class="choice__container hide">
-          <div class="choices__wrapper">
-            <div class="choices">
-              <p class="choice__letter">A</p>
-              <p class="choice__text" data-number="1">Choice A</p>
-            </div>
-
-            <div class="choices">
-              <p class="choice__letter">B</p>
-              <p class="choice__text" data-number="2">Choice B</p>
-            </div>
-
-            <div class="choices">
-              <p class="choice__letter">C</p>
-              <p class="choice__text" data-number="3">Choice C</p>
-            </div>
-
-            <div class="choices">
-              <p class="choice__letter">D</p>
-              <p class="choice__text" data-number="4">Choice D</p>
-            </div>
+        <div class="question__container">
+          <div class="number__of__question">
+            <p>
+              Quesion: <span class="number">1</span>
+              <span class="of">of</span>
+              <span class="total">10</span>
+            </p>
           </div>
-        </section>
+          <div class="question__wrapper">
+            <p class="question">Question Goes Here</p>
+              <p>Time Remaining: <span class="time">30</span></p>
+          </div>
+        </div>
+
+        <div class="answer__container">
+          <div class="choice">
+            <p class="answer__letter">A</p>
+            <p class="answer__text">Choice 1</p>
+          </div>
+          <div class="choice">
+            <p class="answer__letter">B</p>
+            <p class="answer__text">Choice 2</p>
+        </div>
+          <div class="choice">
+            <p class="answer__letter">C</p>
+            <p class="answer__text">Choice 3</p>
+          </div>
+          <div class="choice">
+            <p class="answer__letter">D</p>
+            <p class="answer__text">Choice 4</p>
+          </div>
       </article>
     </main>
   </body>
