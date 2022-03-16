@@ -14,7 +14,6 @@ const startGameButton = document.querySelector("#start__game");
 const restartGameButton = document.querySelector("#restart__game");
 
 // initial game variables
-const correctScore = 10;
 const numberOfQuestions = 10;
 let questions = [];
 let allQuestions = [];
@@ -22,7 +21,6 @@ let currentQuestion = {};
 let questionCounter = 0;
 let acceptingAnswers = false;
 let pauseTimer = false;
-let finalScore = 100;
 let playerScore, timeValue;
 
 // api call to fetch trivia game questions and answers
@@ -36,15 +34,16 @@ fetch(url)
       const triviaQuestion = {
         question: question.question,
       };
-
+      //   using spread operator to create array of incorrect answers
       const answerArray = [...question.incorrect_answers];
+      // using mathfloor with mathrandom to get random number between 0 and 3
       triviaQuestion.answer = Math.floor(Math.random() * 4) + 1;
+      // answerArray.splice is used to insert the correct answer into the array
       answerArray.splice(triviaQuestion.answer - 1, 0, question.correct_answer);
-
+      // answerArray.forEach is used to loop through the array and set the answer text to the answer array
       answerArray.forEach((answer, index) => {
         triviaQuestion["answer" + (index + 1)] = answer;
       });
-
       return triviaQuestion;
     });
     gameStart();
@@ -57,7 +56,7 @@ fetch(url)
 function gameStart() {
   questionCounter = 0;
   playerScore = 0;
-  timeValue = 60;
+  timeValue = 60;   
   allQuestions = [...questions];
   startGameButton.addEventListener("click", () => {
     modal.classList.add("hide");
@@ -67,30 +66,29 @@ function gameStart() {
   });
 }
 
-// add score to player score
-function addScore(num) {
-  playerScore += num;
-  score.innerHTML = playerScore;
-}
+// remove question that has been shown and answerd from allQuestions array
 
 // function to get new question
-// if there are no more questions, end game
-// if there are more questions, get new question
 function getNewQuestion() {
+  // if there are no more questions, end game
+  // if questionCounter is greater than equal to number of questions, end game
   if (allQuestions.length === 0 || questionCounter >= numberOfQuestions) {
     endGame();
   }
   questionCounter++;
   questionNumber.innerHTML = `${questionCounter} / ${numberOfQuestions}`;
 
+  // get random question from all questions array and set current question to that question
   const currentQuestionIndex = Math.floor(Math.random() * allQuestions.length);
   currentQuestion = allQuestions[currentQuestionIndex];
   question.innerHTML = currentQuestion.question;
 
+  // loop through answer letters and set text to answer text
   answerText.forEach((answer) => {
     const number = answer.dataset["number"];
     answer.innerHTML = currentQuestion["answer" + number];
   });
+
   // remove question from array
   allQuestions.splice(currentQuestionIndex, 1);
   acceptingAnswers = true;
@@ -111,41 +109,40 @@ function gameTimer() {
   }, 1000);
 }
 
+// end game function
 function endGame() {
   acceptingAnswers = false;
   pauseTimer = true;
   modal.classList.remove("hide");
   overlay.classList.remove("hide");
   welcomeTitle.innerHTML = "Game Over";
-  welcomeText.innerHTML = `You got ${playerScore} out of ${finalScore} points!`;
+  welcomeText.innerHTML = `You got ${playerScore} out of 100 points!`;
   startGameButton.classList.add("hide");
   restartGameButton.classList.remove("hide");
 }
 
 // restart game function
-// set score back to 00
+// set score back to 0
 // set question counter back to 1
 // set timer back to 60 seconds and pause timer
 // when start game button is clicked start timer again
 // get new question
 // hide restart game button
-// show start game button
 // hide modal
 // hide overlay
 function gameRestart() {
-    playerScore = 0;
-    score.innerHTML = playerScore;
-    questionCounter = 0;
-    timeValue = 60;
-    pauseTimer = false;
-    startGameButton.classList.remove("hide");
-    restartGameButton.classList.add("hide");
-    modal.classList.add("hide");
-    overlay.classList.add("hide");
-    getNewQuestion();
+  playerScore = 0;
+  score.innerHTML = playerScore;
+  questionCounter = 0;
+  allQuestions = [...questions];
+  timeValue = 60;
+  pauseTimer = false;
+  startGameButton.classList.remove("hide");
+  restartGameButton.classList.add("hide");
+  modal.classList.add("hide");
+  overlay.classList.add("hide");
+  getNewQuestion();
 }
-
-
 
 answerText.forEach((answer) => {
   answer.addEventListener("click", (e) => {
@@ -156,7 +153,8 @@ answerText.forEach((answer) => {
     const correctOrIncorrect =
       userAnswer == currentQuestion.answer ? "right" : "wrong";
     if (correctOrIncorrect === "right") {
-      addScore(correctScore);
+      playerScore += 10;
+      score.innerHTML = playerScore;
     }
     userChoice.parentElement.classList.add(correctOrIncorrect);
     setTimeout(() => {
