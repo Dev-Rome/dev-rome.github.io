@@ -1,3 +1,4 @@
+/* declaring global css values */
 :root {
     --main-color: #f1f3f5;
     --secondary-color: #212529;
@@ -29,12 +30,12 @@ header {
     padding: 2rem;
 }
 
-/* create modal with close button */
+/* create modal with start game button and restart game button   */
 .modal__window {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 70%;
+    width: 75%;
     background-color: var(--fourth-color);
     transform: translate(-50%, -50%);
     z-index: 10;
@@ -48,17 +49,18 @@ header {
 }
 
 .welcome__title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
     color: var(--secondary-color);
 }
 
 .welcome__text {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color: var(--secondary-color);
     text-align: center;
-    line-height: 1.5;
+    line-height: 1.2;
     margin-bottom: 1rem;
+    width: 100%;
 }
 
 .welcome__button, .restart__button {
@@ -144,6 +146,3 @@ header {
 .hide {
     display: none;
 }
-
-
-
