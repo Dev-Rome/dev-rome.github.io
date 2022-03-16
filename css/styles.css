@@ -30,6 +30,14 @@ header {
     padding: 2rem;
 }
 
+.logo, .player__score {
+    font-size: 1.3rem
+}
+
+.logo, .player__score {
+    color: var(--secondary-color);
+}
+
 /* create modal with start game button and restart game button   */
 .modal__window {
     position: absolute;
@@ -85,13 +93,30 @@ header {
     z-index: 5;
   }
 
-.logo, .player__score {
-    font-size: 1.3rem
-}
-
-.logo, .player__score {
+  .category__title {
+    font-size: 1.3rem;
     color: var(--secondary-color);
-}
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .category__list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+  }
+
+  .category__button {
+    background-color: var(--third-color);
+    color: var(--fourth-color);
+    border: none;
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
 
 .number__of__question {
     font-size: 1rem;
