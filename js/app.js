@@ -12,8 +12,10 @@ const overlay = document.querySelector(".overlay");
 const startGameButton = document.querySelector("#start__game");
 const restartGameButton = document.querySelector("#restart__game");
 
+// using Array.from to convert nodelist to array
 const answerText = Array.from(document.getElementsByClassName("answer__text"));
 
+// dom elements for categorie buttons
 const genralKnowledge = document.getElementById("general__button");
 const sports = document.getElementById("sports__button");
 const entertainment = document.getElementById("entertainment__button");
@@ -22,7 +24,7 @@ const history = document.getElementById("history__button");
 const reset = document.getElementById("reset__button");
 
 // game variables
-const numberOfQuestions = 10;
+let numberOfQuestions = 10;
 let questions = [];
 let allQuestions = [];
 let currentQuestion = {};
@@ -33,7 +35,7 @@ let playerScore, timeValue;
 
 // function to call data from API
 function triviaAPI(id) {
-    const url = `https://opentdb.com/api.php?amount=50&category=${id}&type=multiple`;
+  const url = `https://opentdb.com/api.php?amount=50&category=${id}&type=multiple`;
   fetch(url)
     .then((res) => {
       return res.json();
@@ -59,58 +61,64 @@ function triviaAPI(id) {
         });
         return triviaQuestion;
       });
-        startGame();
+      startGame();
     })
     .catch((err) => {
       console.log(err, "Something went wrong");
     });
 }
 
+// foreach to loop throught answer and add correct class
+answerText.forEach((answer) => {
+    // add event listener to each answer
+  answer.addEventListener("click", (e) => {
+    // if accepting answers is true
+    // and if the answer clicked is the correct answer
+    // add right class to answer
+    // add to player score
+    // if wrong answer, add wrong class to answer
+    if (!acceptingAnswers) return;
+    acceptingAnswers = false;
+    const userChoice = e.target;
+    const userAnswer = userChoice.dataset["number"];
+    const correctOrIncorrect =
+      userAnswer == currentQuestion.answer ? "right" : "wrong";
+    if (correctOrIncorrect === "right") {
+      playerScore += 10;
+      score.innerHTML = playerScore;
+    }
+    userChoice.parentElement.classList.add(correctOrIncorrect);
+    setTimeout(() => {
+      userChoice.parentElement.classList.remove(correctOrIncorrect);
+      getNewQuestion();
+    }, 1000);
+  });
+});
+
 // general knowledge api
 function genralKnowledgeAPI() {
-    triviaAPI(9);
+  triviaAPI(9);
 }
 
 // sports api
 function sportsApi() {
-    triviaAPI(21);
+  triviaAPI(21);
 }
 
 // entertainment api
 function entertainmentAPI() {
-    triviaAPI(11);
+  triviaAPI(11);
 }
 
 // science api
 function scienceAPI() {
-    triviaAPI(17);
+  triviaAPI(17);
 }
 
 // history api
 function historyAPI() {
-    triviaAPI(23);
+  triviaAPI(23);
 }
-
-// foreach to loop throught answer and add correct class
-answerText.forEach((answer) => {
-    answer.addEventListener("click", (e) => {
-      if (!acceptingAnswers) return;
-      acceptingAnswers = false;
-      const userChoice = e.target;
-      const userAnswer = userChoice.dataset["number"];
-      const correctOrIncorrect =
-        userAnswer == currentQuestion.answer ? "right" : "wrong";
-      if (correctOrIncorrect === "right") {
-        playerScore += 10;
-        score.innerHTML = playerScore;
-      }
-      userChoice.parentElement.classList.add(correctOrIncorrect);
-      setTimeout(() => {
-        userChoice.parentElement.classList.remove(correctOrIncorrect);
-        getNewQuestion();
-      }, 1000);
-    });
-  });
 
 // function to start game
 function startGame() {
@@ -132,21 +140,17 @@ function getNewQuestion() {
   if (allQuestions.length === 0 || questionCounter >= numberOfQuestions) {
     endGame();
   }
-
   questionCounter++;
   questionNumber.innerHTML = `${questionCounter} / ${numberOfQuestions}`;
-
   // get random question from all questions array and set current question to that question
   const currentQuestionIndex = Math.floor(Math.random() * allQuestions.length);
   currentQuestion = allQuestions[currentQuestionIndex];
   question.innerHTML = currentQuestion.question;
-
   // loop through answer letters and set text to answer text
   answerText.forEach((answer) => {
     const number = answer.dataset["number"];
     answer.innerHTML = currentQuestion["answer" + number];
   });
-
   // remove question from array
   allQuestions.splice(currentQuestionIndex, 1);
   acceptingAnswers = true;
@@ -154,14 +158,14 @@ function getNewQuestion() {
 
 // function game timer
 function gameTimer() {
-    if (pauseTimer) return;
-    if(timeValue <= 0) {
-        endGame();
-    } else if (timeValue > 0) {
-        timeValue--;
-        timer.innerHTML = timeValue;
-        setTimeout(gameTimer, 1000);
-    }
+  if (pauseTimer) return;
+  if (timeValue <= 0) {
+    endGame();
+  } else if (timeValue > 0) {
+    timeValue--;
+    timer.innerHTML = timeValue;
+    setTimeout(gameTimer, 1000);
+  }
 }
 
 // function to end game
@@ -177,17 +181,17 @@ function endGame() {
 }
 
 function resetGame() {
-    playerScore = 0;
-    score.innerHTML = playerScore;
-    questionCounter = 0;
-    timeValue = 45;
-    timer.innerHTML = timeValue;
-    reset.classList.add("hide");
-    categoryList.classList.remove("hide");
-    categoryTitle.innerHTML = "Select a Category";
-    allQuestions = [...questions];
-    pauseTimer = true;
-    getNewQuestion();
+  playerScore = 0;
+  score.innerHTML = playerScore;
+  questionCounter = 0;
+  timeValue = 45;
+  timer.innerHTML = timeValue;
+  reset.classList.add("hide");
+  categoryList.classList.remove("hide");
+  categoryTitle.innerHTML = "Select a Category";
+  allQuestions = [...questions];
+  pauseTimer = true;
+  getNewQuestion();
 }
 
 // button event listeners to select category
