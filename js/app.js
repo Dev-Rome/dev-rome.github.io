@@ -1,19 +1,27 @@
 "use strict";
 
 // dom elements
-const welcomeTitle = document.querySelector(".welcome__title");
-const welcomeText = document.querySelector(".welcome__text");
+const categoryTitle = document.querySelector(".category__title");
+const categoryList = document.querySelector(".category__list");
 const score = document.querySelector(".score");
 const timer = document.querySelector(".time");
 const question = document.querySelector(".question");
 const questionNumber = document.querySelector(".question__number");
-const answerText = Array.from(document.getElementsByClassName("answer__text"));
 const modal = document.querySelector(".modal__window");
 const overlay = document.querySelector(".overlay");
 const startGameButton = document.querySelector("#start__game");
 const restartGameButton = document.querySelector("#restart__game");
 
-// initial game variables
+const answerText = Array.from(document.getElementsByClassName("answer__text"));
+
+const genralKnowledge = document.getElementById("general__button");
+const sports = document.getElementById("sports__button");
+const entertainment = document.getElementById("entertainment__button");
+const science = document.getElementById("science__button");
+const history = document.getElementById("history__button");
+const reset = document.getElementById("reset__button");
+
+// game variables
 const numberOfQuestions = 10;
 let questions = [];
 let allQuestions = [];
@@ -23,50 +31,77 @@ let acceptingAnswers = false;
 let pauseTimer = false;
 let playerScore, timeValue;
 
-// api call to fetch trivia game questions and answers
-const url = "https://opentdb.com/api.php?amount=50&type=multiple";
-fetch(url)
-  .then((res) => {
-    return res.json();
-  })
-  .then((data) => {
-    questions = data.results.map((question) => {
-      const triviaQuestion = {
-        question: question.question,
-      };
-      //   using spread operator to create array of incorrect answers
-      const answerArray = [...question.incorrect_answers];
-      // using mathfloor with mathrandom to get random number between 0 and 3
-      triviaQuestion.answer = Math.floor(Math.random() * 4) + 1;
-      // answerArray.splice is used to insert the correct answer into the array
-      answerArray.splice(triviaQuestion.answer - 1, 0, question.correct_answer);
-      // answerArray.forEach is used to loop through the array and set the answer text to the answer array
-      answerArray.forEach((answer, index) => {
-        triviaQuestion["answer" + (index + 1)] = answer;
+// function to call data from API
+function triviaAPI(id) {
+    const url = `https://opentdb.com/api.php?amount=50&category=${id}&type=multiple`;
+  fetch(url)
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      questions = data.results.map((question) => {
+        const triviaQuestion = {
+          question: question.question,
+        };
+        //   using spread operator to create array of incorrect answers
+        const answerArray = [...question.incorrect_answers];
+        // using mathfloor with mathrandom to get random number between 0 and 3
+        triviaQuestion.answer = Math.floor(Math.random() * 4) + 1;
+        // answerArray.splice is used to insert the correct answer into the array
+        answerArray.splice(
+          triviaQuestion.answer - 1,
+          0,
+          question.correct_answer
+        );
+        // answerArray.forEach is used to loop through the array and set the answer text to the answer array
+        answerArray.forEach((answer, index) => {
+          triviaQuestion["answer" + (index + 1)] = answer;
+        });
+        return triviaQuestion;
       });
-      return triviaQuestion;
+        startGame();
+    })
+    .catch((err) => {
+      console.log(err, "Something went wrong");
     });
-    gameStart();
-  })
-  .catch((err) => {
-    console.log(err, "Something went wrong");
-  });
-
-// start game function
-function gameStart() {
-  questionCounter = 0;
-  playerScore = 0;
-  timeValue = 60;   
-  allQuestions = [...questions];
-  startGameButton.addEventListener("click", () => {
-    modal.classList.add("hide");
-    overlay.classList.add("hide");
-    gameTimer();
-    getNewQuestion();
-  });
 }
 
-// remove question that has been shown and answerd from allQuestions array
+// general knowledge api
+function genralKnowledgeAPI() {
+    triviaAPI(9);
+}
+
+// sports api
+function sportsApi() {
+    triviaAPI(21);
+}
+
+// entertainment api
+function entertainmentAPI() {
+    triviaAPI(11);
+}
+
+// science api
+function scienceAPI() {
+    triviaAPI(17);
+}
+
+// history api
+function historyAPI() {
+    triviaAPI(23);
+}
+
+// function to start game
+function startGame() {
+  questionCounter = 0;
+  playerScore = 0;
+  timeValue = 60;
+  allQuestions = [...questions];
+  modal.classList.add("hide");
+  overlay.classList.add("hide");
+  gameTimer();
+  getNewQuestion();
+}
 
 // function to get new question
 function getNewQuestion() {
@@ -75,6 +110,7 @@ function getNewQuestion() {
   if (allQuestions.length === 0 || questionCounter >= numberOfQuestions) {
     endGame();
   }
+
   questionCounter++;
   questionNumber.innerHTML = `${questionCounter} / ${numberOfQuestions}`;
 
@@ -109,41 +145,21 @@ function gameTimer() {
   }, 1000);
 }
 
-// end game function
+// function to end game
+// or if user wants to pick a new category
 function endGame() {
   acceptingAnswers = false;
   pauseTimer = true;
   modal.classList.remove("hide");
   overlay.classList.remove("hide");
-  welcomeTitle.innerHTML = "Game Over";
-  welcomeText.innerHTML = `You got ${playerScore} out of 100 points!`;
-  startGameButton.classList.add("hide");
-  restartGameButton.classList.remove("hide");
+  categoryTitle.innerHTML = `Game Over - Your Score is ${playerScore} out of 100 points`;
+  categoryList.classList.add("hide");
+  reset.classList.remove("hide");
 }
 
-// restart game function
-// set score back to 0
-// set question counter back to 1
-// set timer back to 60 seconds and pause timer
-// when start game button is clicked start timer again
-// get new question
-// hide restart game button
-// hide modal
-// hide overlay
-function gameRestart() {
-  playerScore = 0;
-  score.innerHTML = playerScore;
-  questionCounter = 0;
-  allQuestions = [...questions];
-  timeValue = 60;
-  pauseTimer = false;
-  startGameButton.classList.remove("hide");
-  restartGameButton.classList.add("hide");
-  modal.classList.add("hide");
-  overlay.classList.add("hide");
-  getNewQuestion();
-}
 
+
+// foreach to loop throught answer and add correct class
 answerText.forEach((answer) => {
   answer.addEventListener("click", (e) => {
     if (!acceptingAnswers) return;
@@ -164,4 +180,10 @@ answerText.forEach((answer) => {
   });
 });
 
-restartGameButton.addEventListener("click", gameRestart);
+// button event listeners to select category
+genralKnowledge.addEventListener("click", genralKnowledgeAPI);
+sports.addEventListener("click", sportsApi);
+entertainment.addEventListener("click", entertainmentAPI);
+science.addEventListener("click", scienceAPI);
+history.addEventListener("click", historyAPI);
+reset.addEventListener("click", resetGame);
