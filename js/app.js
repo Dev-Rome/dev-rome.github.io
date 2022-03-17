@@ -91,14 +91,36 @@ function historyAPI() {
     triviaAPI(23);
 }
 
+// foreach to loop throught answer and add correct class
+answerText.forEach((answer) => {
+    answer.addEventListener("click", (e) => {
+      if (!acceptingAnswers) return;
+      acceptingAnswers = false;
+      const userChoice = e.target;
+      const userAnswer = userChoice.dataset["number"];
+      const correctOrIncorrect =
+        userAnswer == currentQuestion.answer ? "right" : "wrong";
+      if (correctOrIncorrect === "right") {
+        playerScore += 10;
+        score.innerHTML = playerScore;
+      }
+      userChoice.parentElement.classList.add(correctOrIncorrect);
+      setTimeout(() => {
+        userChoice.parentElement.classList.remove(correctOrIncorrect);
+        getNewQuestion();
+      }, 1000);
+    });
+  });
+
 // function to start game
 function startGame() {
   questionCounter = 0;
   playerScore = 0;
-  timeValue = 60;
+  timeValue = 45;
   allQuestions = [...questions];
   modal.classList.add("hide");
   overlay.classList.add("hide");
+  pauseTimer = false;
   gameTimer();
   getNewQuestion();
 }
@@ -130,19 +152,16 @@ function getNewQuestion() {
   acceptingAnswers = true;
 }
 
-// game timer function
-// decrement timer every second
-// if timer reaches 0, end game
+// function game timer
 function gameTimer() {
-  const timerInterval = setInterval(() => {
-    if (!pauseTimer) {
-      timeValue--;
-      timer.innerHTML = timeValue;
+    if (pauseTimer) return;
+    if(timeValue <= 0) {
+        endGame();
+    } else if (timeValue > 0) {
+        timeValue--;
+        timer.innerHTML = timeValue;
+        setTimeout(gameTimer, 1000);
     }
-    if (timeValue === 0) {
-      endGame();
-    }
-  }, 1000);
 }
 
 // function to end game
@@ -157,28 +176,19 @@ function endGame() {
   reset.classList.remove("hide");
 }
 
-
-
-// foreach to loop throught answer and add correct class
-answerText.forEach((answer) => {
-  answer.addEventListener("click", (e) => {
-    if (!acceptingAnswers) return;
-    acceptingAnswers = false;
-    const userChoice = e.target;
-    const userAnswer = userChoice.dataset["number"];
-    const correctOrIncorrect =
-      userAnswer == currentQuestion.answer ? "right" : "wrong";
-    if (correctOrIncorrect === "right") {
-      playerScore += 10;
-      score.innerHTML = playerScore;
-    }
-    userChoice.parentElement.classList.add(correctOrIncorrect);
-    setTimeout(() => {
-      userChoice.parentElement.classList.remove(correctOrIncorrect);
-      getNewQuestion();
-    }, 1000);
-  });
-});
+function resetGame() {
+    playerScore = 0;
+    score.innerHTML = playerScore;
+    questionCounter = 0;
+    timeValue = 45;
+    timer.innerHTML = timeValue;
+    reset.classList.add("hide");
+    categoryList.classList.remove("hide");
+    categoryTitle.innerHTML = "Select a Category";
+    allQuestions = [...questions];
+    pauseTimer = true;
+    getNewQuestion();
+}
 
 // button event listeners to select category
 genralKnowledge.addEventListener("click", genralKnowledgeAPI);
