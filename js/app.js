@@ -10,7 +10,6 @@ const questionNumber = document.querySelector(".question__number");
 const modal = document.querySelector(".modal__window");
 const overlay = document.querySelector(".overlay");
 const startGameButton = document.querySelector("#start__game");
-const restartGameButton = document.querySelector("#restart__game");
 
 // using Array.from to convert nodelist to array
 const answerText = Array.from(document.getElementsByClassName("answer__text"));
@@ -46,15 +45,9 @@ function triviaAPI(id) {
           question: question.question,
         };
         //   using spread operator to create array of incorrect answers
-        const answerArray = [...question.incorrect_answers];
+        const answerArray = [question.correct_answer, ...question.incorrect_answers];
         // using mathfloor with mathrandom to get random number between 0 and 3
         triviaQuestion.answer = Math.floor(Math.random() * 4) + 1;
-        // answerArray.splice is used to insert the correct answer into the array
-        answerArray.splice(
-          triviaQuestion.answer - 1,
-          0,
-          question.correct_answer
-        );
         // answerArray.forEach is used to loop through the array and set the answer text to the answer array
         answerArray.forEach((answer, index) => {
           triviaQuestion["answer" + (index + 1)] = answer;
@@ -70,7 +63,7 @@ function triviaAPI(id) {
 
 // foreach to loop throught answer and add correct class
 answerText.forEach((answer) => {
-    // add event listener to each answer
+  // add event listener to each answer
   answer.addEventListener("click", (e) => {
     // if accepting answers is true
     // and if the answer clicked is the correct answer
