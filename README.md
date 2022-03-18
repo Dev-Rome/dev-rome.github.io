@@ -41,3 +41,7 @@ timer to answer 10 questions in total. Reset the game and choose a new category 
 * Was not able to have player lose a life would like to work on that in the future.
 * Was not able to show correct and all incorrect answers after player picked a answer to show what they got wrong or right.
 * Work more on the UI design to give it more of a game feel and not just a basic trivia game.
+
+## Link To Game
+
+https://dev-rome.github.io/
