@@ -9,7 +9,6 @@ const question = document.querySelector(".question");
 const questionNumber = document.querySelector(".question__number");
 const modal = document.querySelector(".modal__window");
 const overlay = document.querySelector(".overlay");
-const startGameButton = document.querySelector("#start__game");
 
 // using Array.from to convert nodelist to array
 const answerText = Array.from(document.getElementsByClassName("answer__text"));
@@ -46,7 +45,7 @@ function triviaAPI(id) {
         };
         //   using spread operator to create array of incorrect answers
         const answerArray = [question.correct_answer, ...question.incorrect_answers];
-        // using mathfloor with mathrandom to get random number between 0 and 3
+        // using mathfloor with mathrandom to get random number between 0 and 3 adding 1 to get number between 1 and 4
         triviaQuestion.answer = Math.floor(Math.random() * 4) + 1;
         // answerArray.forEach is used to loop through the array and set the answer text to the answer array
         answerArray.forEach((answer, index) => {
@@ -72,17 +71,16 @@ answerText.forEach((answer) => {
     // if wrong answer, add wrong class to answer
     if (!acceptingAnswers) return;
     acceptingAnswers = false;
-    const userChoice = e.target;
-    const userAnswer = userChoice.dataset["number"];
+    const userAnswer = e.target.dataset["number"];
     const correctOrIncorrect =
       userAnswer == currentQuestion.answer ? "right" : "wrong";
     if (correctOrIncorrect === "right") {
       playerScore += 10;
       score.innerHTML = playerScore;
     }
-    userChoice.parentElement.classList.add(correctOrIncorrect);
+    e.target.parentElement.classList.add(correctOrIncorrect);
     setTimeout(() => {
-      userChoice.parentElement.classList.remove(correctOrIncorrect);
+      e.target.parentElement.classList.remove(correctOrIncorrect);
       getNewQuestion();
     }, 1000);
   });
@@ -90,27 +88,52 @@ answerText.forEach((answer) => {
 
 // general knowledge api
 function genralKnowledgeAPI() {
-  triviaAPI(9);
+    categoryTitle.innerHTML = "General Knowledge";
+    categoryList.classList.add("hide");
+    setTimeout(() => {
+        categoryList.classList.add("hide");
+        triviaAPI(9);
+    }, 2000);
 }
 
 // sports api
 function sportsApi() {
-  triviaAPI(21);
+    categoryTitle.innerHTML = "Sports";
+    categoryList.classList.add("hide");
+    setTimeout(() => {
+        categoryList.classList.add("hide");
+        triviaAPI(21);
+    }, 2000);
 }
 
 // entertainment api
 function entertainmentAPI() {
-  triviaAPI(11);
+    categoryTitle.innerHTML = "Entertainment";
+    categoryList.classList.add("hide");
+    setTimeout(() => {
+        categoryList.classList.add("hide");
+        triviaAPI(11);
+    }, 2000);
 }
 
 // science api
 function scienceAPI() {
-  triviaAPI(17);
+    categoryTitle.innerHTML = "Science";
+    categoryList.classList.add("hide");
+    setTimeout(() => {
+        categoryList.classList.add("hide");
+        triviaAPI(17);
+    }, 2000);
 }
 
 // history api
 function historyAPI() {
-  triviaAPI(23);
+    categoryTitle.innerHTML = "History";
+    categoryList.classList.add("hide");
+    setTimeout(() => {
+        categoryList.classList.add("hide");
+        triviaAPI(23);
+    }, 2000);
 }
 
 // function to start game
