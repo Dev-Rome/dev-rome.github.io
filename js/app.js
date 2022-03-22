@@ -3,6 +3,7 @@
 // initailize variables
 const score = document.querySelector(".game__score-number");
 const modal = document.querySelector(".modal__container");
+const modalBackground = document.querySelector(".modal__content")
 const modalTitle = document.querySelector(".modal__title");
 const modalText = document.querySelector(".modal__text");
 const startButton = document.querySelector(".start__btn");
@@ -107,6 +108,20 @@ function checkAnswer() {
       }, 1000);
     });
   });
+  checkWinner();
+}
+
+function checkWinner() {
+  if (playerScore === scoreGoal) {
+    modal.classList.remove("hide");
+    modalBackground.style.backgroundColor = "#40c057";
+    modalTitle.innerHTML = "You Win!";
+    modalText.innerHTML = `Your final score is ${playerScore} out of ${scoreGoal}`;
+    modalTitle.style.color = "#f8f9fa";
+    modalText.style.color = "#f8f9fa";
+    startButton.classList.add("hide");
+    resetButton.classList.remove("hide");
+  }
 }
 
 function displayBrokenHeart() {
