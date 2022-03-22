@@ -7,79 +7,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Press+Start+2P&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/styles.css" />
-    <script
-      src="https://kit.fontawesome.com/c92cf196de.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="js/app.js" defer></script>
-    <title>Trivia Game</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <title>Video Game Trivia</title>
   </head>
   <body>
-    <main>
-      <article class="container">
-        <header>
-          <h1 class="logo">Trivia Game</h1>
-          <p class="player__score"><span class="score">0</span></p>
-        </header>
-
-        <div class="overlay"></div>
-
-        <div class="category__container">
-          <div class="modal__window">
-            <h2 class="category__title">Select a Category</h2>
-            <div class="category__list">
-              <button class="category__button" id="general__button">
-                General Knowledge
-              </button>
-              <button class="category__button" id="sports__button">
-                Sports
-              </button>
-              <button class="category__button" id="entertainment__button">
-                Entertainment
-              </button>
-              <button class="category__button" id="science__button">
-                Science
-              </button>
-              <button class="category__button" id="history__button">
-                History
-              </button>
-            </div>
-            <button class="reset hide" id="reset__button">Reset Game</button>
-          </div>
-        </div>
-
-        <div class="question__container">
-          <div class="number__of__question">
-            <p>Quesion: <span class="question__number"></span></p>
-          </div>
-          <div class="question__wrapper">
-            <p class="question"></p>
-            <span class="time">45</span>
-          </div>
-        </div>
-
-        <div class="answer__container">
-          <div class="choice">
-            <p class="answer__letter">A</p>
-            <p class="answer__text" data-number="1"></p>
-          </div>
-          <div class="choice">
-            <p class="answer__letter">B</p>
-            <p class="answer__text" data-number="2"></p>
-          </div>
-          <div class="choice">
-            <p class="answer__letter">C</p>
-            <p class="answer__text" data-number="3"></p>
-          </div>
-          <div class="choice">
-            <p class="answer__letter">D</p>
-            <p class="answer__text" data-number="4"></p>
-          </div>
-        </div>
+    <main class="welcome__container">
+      <article class="welcome">
+        <h1 class="welcome__title">Welcome To Video Game Trivia</h1>
+        <a href="/game.html" class="play__game">Press Start</a>
       </article>
     </main>
   </body>
