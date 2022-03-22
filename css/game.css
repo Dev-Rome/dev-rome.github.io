@@ -109,6 +109,7 @@
   
   .question {
     width: 75%;
+    line-height: 1.7;
   }
   
   .answer__choice {
