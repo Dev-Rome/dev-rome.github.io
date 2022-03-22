@@ -58,7 +58,7 @@ function startGame() {
   allQuestions = [...questions];
   playerScore = 0;
   questionCounter = 1;
-  timeValue = 45;
+  timeValue = 90;
   getNewQuestion();
   checkAnswer();
   gameTimer();
