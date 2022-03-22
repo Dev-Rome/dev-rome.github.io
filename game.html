@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/c92cf196de.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/game.css">
+    <script src="js/app.js" defer></script>
+    <title>Video Game Trivia</title>
+  </head>
+  <body>
+    <header class="game__header">
+      <h1 class="game__title">Video Game Trivia</h1>
+      <p class="game__score-text">
+        Score: <span class="game__score-number">0</span>
+      </p>
+      </div>
+    </header>
+
+    <main class="game__container">
+      <article class="game">
+
+        <div class="modal__container">
+          <div class="modal__window">
+            <div class="modal__content">
+              <h2 class="modal__title">Welcome To Video Game Trivia</h2>
+              <p class="modal__text">
+                - You will be presented with 20 questions. <br>
+                - Each with 4 possible answers. <br>
+                - You will have 3 lives to answer each question. <br>
+                - You will be given a timer to answer each question as well. <br>
+                - Correct answer awards you with 5 points <br>
+                - The game ends when you run out of lives, time or answer all questions. <br>
+                - Be sure to select the correct answer!
+              </p>
+              <button class="start__btn">Start</button>
+              <button class="reset__btn hide">Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="question__container">
+          <p class="question__number">
+            Question <span class="question__number-number">1</span> of 20
+          </p>
+          <div class="question__wrapper">
+            <p class="question"></p>
+            <p class="question__timer">Time:<span class="question__timer-number">45</span></p>
+          </div>
+        </div>
+
+        <div class="answer__container">
+          <div class="answer__choice">
+            <p class="answer__letter">A</p>
+            <p class="answer__text" data-number="1"></p>
+          </div>
+          <div class="answer__choice">
+            <p class="answer__letter">B</p>
+            <p class="answer__text" data-number="2"></p>
+          </div>
+          <div class="answer__choice">
+            <p class="answer__letter">C</p>
+            <p class="answer__text" data-number="3"></p>
+          </div>
+          <div class="answer__choice">
+            <p class="answer__letter">D</p>
+            <p class="answer__text" data-number="4"></p>
+          </div>
+        </div>
+        <div class="lives__container"></div>
+      </article>
+    </main>
+  </body>
+</html>
