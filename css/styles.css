@@ -1,14 +1,3 @@
-/* declaring global css values */
-:root {
-  --main-color: #f1f3f5;
-  --secondary-color: #212529;
-  --third-color: #4dabf7;
-  --fourth-color: #fff;
-  --correct-color: #69db7c;
-  --wrong-color: #ff6b6b;
-  --main-font-family: "Open Sans", sans-serif;
-}
-
 *,
 *::before,
 *::after {
@@ -18,139 +7,51 @@
 }
 
 body {
-  background-color: var(--main-color);
-  font-family: var(--main-font-family);
-  width: 1140px;
-  width: 80%;
-  margin: 0 auto;
+    background-color: #495057;
+    color: #f8f9fa;
+    font-family: 'Press Start 2P', cursive;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 2rem;
+a {
+    text-decoration: none;
 }
 
-.logo,
-.player__score {
-  font-size: 1.3rem;
+.welcome {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.logo,
-.player__score {
-  color: var(--secondary-color);
+.welcome__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f8f9fa;
+    margin-bottom: 2rem;
 }
 
-/* create modal with start game button and restart game button   */
-.modal__window {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 75%;
-  background-color: var(--fourth-color);
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  padding: 4rem;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.5);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.play__game {
+    color: #f8f9fa;
+    border: 1px solid #f8f9fa;
+    padding: 1rem;
+    animation: blink 1s infinite;
 }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(3px);
-  z-index: 5;
+.play__game:hover {
+    background-color: #f8f9fa;
+    color: #495057;
+    animation: none;
 }
 
-.category__title {
-  font-size: 1.3rem;
-  color: var(--secondary-color);
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.category__list {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-}
-
-.category__button,
-.reset {
-  background-color: var(--third-color);
-  color: var(--fourth-color);
-  border: none;
-  font-size: 1.2rem;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-
-.category__button {
-  margin-bottom: 1rem;
-}
-
-.number__of__question {
-  font-size: 1rem;
-  color: var(--secondary-color);
-  margin-bottom: 1rem;
-}
-
-.question__wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.question {
-  color: var(--secondary-color);
-  font-size: 1.3rem;
-  width: 75%;
-}
-
-.time {
-  font-size: 1.5rem;
-}
-
-.choice {
-  display: flex;
-  width: 100%;
-  margin-bottom: 0.5rem;
-  font-size: 1.1rem;
-  background-color: var(--fourth-color);
-  cursor: pointer;
-}
-
-.answer__letter {
-  padding: 1rem;
-  color: var(--fourth-color);
-  background-color: var(--third-color);
-}
-
-.answer__text {
-  padding: 1rem;
-}
-
-.right {
-  background-color: var(--correct-color);
-}
-
-.wrong {
-  background-color: var(--wrong-color);
-}
-
-.hide {
-  display: none;
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }
