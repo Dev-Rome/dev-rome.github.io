@@ -14,7 +14,7 @@ const lives = document.querySelector(".lives__container");
 
 const answerText = Array.from(document.getElementsByClassName("answer__text"));
 
-let numberOfQuestions = 20;
+let numberOfQuestions = 10;
 let questions = [];
 let allQuestions = [];
 let currentQuestion = {};
@@ -92,7 +92,7 @@ function checkAnswer() {
       const classToApply =
         selectedAnswerIndex == currentQuestion.answer ? "correct" : "incorrect";
       if (classToApply === "correct") {
-        playerScore += 5;
+        playerScore += 10;
         score.innerHTML = playerScore;
         answer.style.backgroundColor = "correct";
         answer.innerHTML = "Correct!";
