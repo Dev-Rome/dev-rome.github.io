@@ -1,11 +1,11 @@
 # Trivia-game
 
-Trivia Game is a game app for any player that wants to test their knowledge in some 
-categories of their choosing. The score will be kept automatically. If you answer 
+Video game trivia is a game app for any player that wants to test their knowledge in
+the catergorie of video games. The score will be kept automatically. If you answer 
 correctly you will get 10 points and continue on to the next question. If you answer 
-wrong no points giving and you move on to the next question. Right answer you will get a 
-green background. Wrong answer you will get a red background. There will be a 45 second 
-timer to answer 10 questions in total. Reset the game and choose a new category if you like.
+wrong no points giving and you will earn a broken heart. Three broken hearts and the game is over. Right answer you will get a 
+green background with the text saying correct. Wrong answer you will get a red background with the text saying incorrect. There will be a 90 second 
+timer to answer 10 questions in total. Reset the game and have fun.
 
 ## Technologies Used
 
