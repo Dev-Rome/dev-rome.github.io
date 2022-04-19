@@ -161,5 +161,6 @@ startButton.addEventListener("click", () => {
 resetButton.addEventListener("click", () => {
     modal.classList.add("hide");
     lives.innerHTML = "";
+    score.innerHTML = 0;
     startGame();
 });
